@@ -10,7 +10,7 @@ Proyek ini dibuat sebagai bagian dari *technical test* untuk posisi Fullstack De
 
 * **Autentikasi:** Registrasi dan Login User menggunakan **JWT (JSON Web Token)**.
 * **Absensi:** Fungsi *endpoint* API untuk **Check-in** dan **Check-out**.
-* **Aturan Bisnis:** Logika otomatis untuk mendeteksi status **Terlambat** atau **Pulang Cepat**.
+* **Aturan Bisnis:** Logika otomatis untuk mendeteksi status **Terlambat** atau **Pulang Cepat** (sesuai jam kerja 09:00 - 17:00).
 * **Arsitektur Event-Driven:** Proses Check-in/Out bersifat **asinkron**. API utama (`main-service`) hanya mencatat *event* ke **RabbitMQ**, sementara *service* terpisah (`report-service`) memproses *event* tersebut untuk membuat laporan.
 * **Laporan:** API `GET /report` dengan fitur *filter* berdasarkan tanggal dan status.
 * **Frontend:** Antarmuka pengguna (UI) yang dibuat dengan **React.js** untuk login, absensi, dan melihat laporan.
@@ -42,5 +42,33 @@ Proyek ini 100% di-kontainerisasi. Anda **tidak perlu** menginstal Node.js, MySQ
 ### Langkah 1: Clone Repository
 
 ```bash
-git clone [https://github.com/iyansaputra/mini-attendance-test.git](https://github.com/iyansaputra/mini-attendance-test.git)
+git clone https://github.com/iyansaputra/mini-attendance-test.git
 cd mini-attendance-test
+```
+
+### Langkah 2: Jalankan Docker Compose
+Pastikan Docker Desktop Anda sedang berjalan (Running). Kemudian, jalankan perintah ini dari root folder proyek:
+
+```bash
+docker compose up --build
+```
+
+* --build diperlukan untuk membangun image main-service, report-service, dan frontend-service untuk pertama kalinya.
+* Proses ini akan mengunduh semua image (MySQL, Nginx, Node), menginstal semua dependencies (npm install), dan menyalakan semua 6 service. Ini mungkin memakan waktu 5-10 menit saat pertama kali.
+
+### Langkah 3: Akses Aplikasi
+Setelah semua service berjalan (log di terminal sudah stabil), Anda bisa mengakses:
+
+* Aplikasi Frontend (UI): http://localhost (Port 80)
+* API Backend: http://localhost:3001
+* RabbitMQ Dashboard: http://localhost:15672 (User: guest, Pass: guest)
+* Database (via DBeaver/etc): Host: localhost, Port: 3307, User: root, Pass: rootpassword
+
+Untuk Menghentikan Proyek
+Tekan Ctrl + C di terminal Anda (jika terminal terkunci log), lalu jalankan:
+
+```bash
+docker compose down
+```
+## 📄 Dokumentasi API
+Koleksi Postman yang berisi semua endpoint API (Registrasi, Login, Check-in, Check-out, Get Report) dapat ditemukan di file: Mini-Attendance.postman_collection.json
