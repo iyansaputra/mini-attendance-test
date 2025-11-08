@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "72cd77a3-38d4-4d20-8a29-96c1e96b1c91",
+		"name": "Mini Attendance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30206207"
+	},
+	"item": [
+		{
+			"name": "main-service",
+			"item": [
+				{
+					"name": "Register New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"iyan@test.com\",\r\n  \"password\": \"password123\",\r\n  \"name\": \"Ahmad Sofian\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"iyan@test.com\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUyMzMyOSwiZXhwIjoxNzYyNjA5NzI5fQ.WQwpOIzVlnihaXXUefuTq1h7iRI7md72ap1pyRiaNVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/auth/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check In",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUyMzMyOSwiZXhwIjoxNzYyNjA5NzI5fQ.WQwpOIzVlnihaXXUefuTq1h7iRI7md72ap1pyRiaNVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/attendance/check-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"attendance",
+								"check-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUyMzMyOSwiZXhwIjoxNzYyNjA5NzI5fQ.WQwpOIzVlnihaXXUefuTq1h7iRI7md72ap1pyRiaNVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/attendance/report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"attendance",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report Filter Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUwMTY2NiwiZXhwIjoxNzYyNTg4MDY2fQ.4LedMpgyX5SzZyHPaSwgtsv_J5qUN8Nz7GhESL_PUso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/attendance/report?status=TERLAMBAT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"attendance",
+								"report"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "TERLAMBAT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Out",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUyMzMyOSwiZXhwIjoxNzYyNjA5NzI5fQ.WQwpOIzVlnihaXXUefuTq1h7iRI7md72ap1pyRiaNVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/attendance/check-out",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"attendance",
+								"check-out"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report Filter Date",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiaXlhbkB0ZXN0LmNvbSIsImlhdCI6MTc2MjUwMTY2NiwiZXhwIjoxNzYyNTg4MDY2fQ.4LedMpgyX5SzZyHPaSwgtsv_J5qUN8Nz7GhESL_PUso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/attendance/report?date=2025-11-06",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"attendance",
+								"report"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-11-06"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
