@@ -1,0 +1,135 @@
+/* --- Gaya Global --- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* --- Kontainer Aplikasi Utama --- */
+.App {
+  max-width: 700px;
+  margin: 0 auto; /* Tengah-kan */
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 0;
+}
+
+h2 {
+  color: #34495e;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 5px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ecf0f1;
+  margin: 20px 0;
+}
+
+/* --- Gaya Form (Login & Filter) --- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='date'],
+select {
+  padding: 10px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* --- Gaya Tombol --- */
+button {
+  background-color: #3498db; /* Biru */
+  color: white;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Tombol Logout & Filter */
+button[type='submit'] {
+  background-color: #2ecc71; /* Hijau */
+}
+button[type='submit']:hover {
+  background-color: #27ae60;
+}
+
+button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Tombol Check-out */
+.Dashboard button:nth-of-type(2) {
+  background-color: #e74c3c; /* Merah */
+}
+.Dashboard button:nth-of-type(2):hover {
+  background-color: #c0392b;
+}
+
+/* --- Gaya Laporan --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f9f9f9;
+}
+
+/* Pesan Error / Sukses */
+p[style*='color: red'] {
+  background-color: #ffebee;
+  border: 1px solid #e57373;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+p[style*='color: green'] {
+  background-color: #e8f5e9;
+  border: 1px solid #81c784;
+  padding: 10px;
+  border-radius: 4px;
+}

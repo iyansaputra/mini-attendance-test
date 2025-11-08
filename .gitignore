@@ -1,0 +1,7 @@
+**/.env
+**/node_modules
+**/dist
+db_data/
+npm-debug.log
+*.log
+.vscode/

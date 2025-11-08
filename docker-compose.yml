@@ -1,0 +1,87 @@
+services:
+  # 1. Database (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: attendance_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: attendance_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # 2. Message Broker (RabbitMQ)
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: attendance_broker
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # 3. Cache (Redis)
+  redis:
+    image: redis:alpine
+    container_name: attendance_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # 4. Main Service (API)
+  main-service:
+    build:
+      context: ./main-service
+    container_name: attendance_api
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      DATABASE_URL: "mysql://root:rootpassword@db:3306/attendance_db"
+      JWT_SECRET: "iniadalahkunciyangsangatrahasiadantidakbolehbocor"
+      AMQP_URL: "amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+      db:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  # 5. Report Service (Worker)
+  report-service:
+    build:
+      context: ./report-service
+    container_name: attendance_worker
+    restart: always
+    environment:
+      DATABASE_URL: "mysql://root:rootpassword@db:3306/attendance_db"
+      AMQP_URL: "amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+      db:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  # 6. Frontend (React UI)
+  frontend-service:
+    build:
+      context: ./frontend 
+    container_name: attendance_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - main-service
+
+volumes:
+  db_data:
