@@ -71,4 +71,8 @@ Tekan Ctrl + C di terminal Anda (jika terminal terkunci log), lalu jalankan:
 docker compose down
 ```
 ## 📄 Dokumentasi API
-Koleksi Postman yang berisi semua endpoint API (Registrasi, Login, Check-in, Check-out, Get Report) dapat ditemukan di file: Mini-Attendance.postman_collection.json
+
+Koleksi Postman yang berisi semua endpoint API (Register, Login, Check-in, Check-out, Get Report):
+
+[Download Postman Collection](https://github.com/iyansaputra/mini-attendance-test/blob/main/Mini%20Attendance.postman_collection.json)
+
